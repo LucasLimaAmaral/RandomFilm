@@ -1,10 +1,10 @@
-# Cineholic 🎬
+# RandomFilm 🎬
 
-O Cineholic é uma API desenvolvida em **Spring Boot** para consulta e gerenciamento de informações sobre filmes, integrada com a API externa do TMDB.
+O RandomFilm é uma API desenvolvida em **Spring Boot** para consulta e gerenciamento de informações sobre filmes, integrada com a API externa do TMDB.
 
 ## 🚀 Tecnologias
-- Java 17
-- Spring Boot 3
+- Java 21
+- Spring Boot 4
 - Spring Data JPA
 - MySQL
 - TMDB API (The Movie Database)

@@ -1,18 +1,30 @@
 package com.pop.film.controller;
 
 import com.pop.film.dto.FilmDTO;
+import com.pop.film.service.FilmService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/movie")
 public class FilmController {
 
-    @GetMapping(value = "/{name}")
-    public ResponseEntity<FilmDTO> getRandomMovie(@PathVariable String name) {
-        return null;
+    private FilmService filmService;
+
+    public FilmController(FilmService filmService) {
+        this.filmService = filmService;
+    }
+
+    @GetMapping
+    public List<FilmDTO> getRandomMovie(@RequestParam("query") String name) {
+        return filmService.findByName(name);
+
+    }
+
+    @GetMapping(value = "/popular")
+    public List<FilmDTO> getPopulrList(){
+        return filmService.getPopularList();
     }
 }
