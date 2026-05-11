@@ -27,4 +27,13 @@ public class FilmController {
     public List<FilmDTO> getPopulrList(){
         return filmService.getPopularList();
     }
+
+    @GetMapping(value = "/search")
+    public ResponseEntity<List<FilmDTO>>(
+        @RequestParam(required = false) String genre,
+        @RequestParam(required = false) Float voteAverage,
+        @RequestParam(required = false) Integer primaryReleaseY
+    ){
+        return filmService.getRandomFilm()
+    }
 }

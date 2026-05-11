@@ -26,4 +26,10 @@ public class FilmService {
         FilmResponseDTO films = filmClient.getPopular();
         return films.results();
     }
+
+    public List<FilmDTO> getRandomFilm(String genre, Float voteAverage, Integer primaryReleaseY){
+        FilmResponseDTO films = filmClient.getRandomFilm(genre, voteAverage, primaryReleaseY);
+
+        return films.results();
+    }
 }

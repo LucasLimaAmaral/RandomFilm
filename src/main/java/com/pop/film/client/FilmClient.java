@@ -7,6 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Component
 public class FilmClient {
@@ -17,35 +18,52 @@ public class FilmClient {
     @Value("${tmdb.api.token}")
     private String apiToken;
 
+    private RestTemplate restTemplate;
 
-    public FilmResponseDTO getByName(String name) {
-        RestTemplate restTemplate = new RestTemplate();
+    public FilmClient(RestTemplate restTemplate){
+        this.restTemplate = restTemplate;
+    }
 
+    private HttpEntity<Void> buildEntity() {
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(apiToken);
+        return new HttpEntity<>(headers);
+    }
 
-        HttpEntity<Void> entity = new HttpEntity<>(headers);
+    public FilmResponseDTO getByName(String name) {
 
         return restTemplate.exchange(
                 urlApi + "/search/movie?query=" + name,
                 HttpMethod.GET,
-                entity,
+                buildEntity(),
                 FilmResponseDTO.class
         ).getBody();
     }
 
     public FilmResponseDTO getPopular() {
-        RestTemplate restTemplate = new RestTemplate();
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(apiToken);
-
-        HttpEntity<Void> entity = new HttpEntity<>(headers);
 
         return restTemplate.exchange(
                 urlApi + "/movie/popular?language=en-US&page=1" ,
                 HttpMethod.GET,
-                entity,
+                buildEntity(),
+                FilmResponseDTO.class
+        ).getBody();
+    }
+
+
+    public FilmResponseDTO getRandomFilm(String genre, Float voteAverage, Integer primaryReleaseY){
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(urlApi + "/discover/movie");
+
+        if (genre != null)   builder.queryParam("with_genres", genre);
+        if (voteAverage != null)   builder.queryParam("vote_average.lte", voteAverage);
+        if (primaryReleaseY != null)  builder.queryParam("primary_release_year", primaryReleaseY);
+
+        String url = builder.toUriString();
+
+        return restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                buildEntity(),
                 FilmResponseDTO.class
         ).getBody();
     }
