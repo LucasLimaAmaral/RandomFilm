@@ -29,11 +29,11 @@ public class FilmController {
     }
 
     @GetMapping(value = "/search")
-    public ResponseEntity<List<FilmDTO>>(
+    public List<FilmDTO> getRandomFilm(
         @RequestParam(required = false) String genre,
         @RequestParam(required = false) Float voteAverage,
         @RequestParam(required = false) Integer primaryReleaseY
     ){
-        return filmService.getRandomFilm()
+        return filmService.getRandomFilm(genre, voteAverage, primaryReleaseY);
     }
 }

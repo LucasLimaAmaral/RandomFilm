@@ -1,6 +1,8 @@
 package com.pop.film.client;
 
+import com.pop.film.config.AppConfig;
 import com.pop.film.dto.FilmResponseDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -52,7 +54,7 @@ public class FilmClient {
 
 
     public FilmResponseDTO getRandomFilm(String genre, Float voteAverage, Integer primaryReleaseY){
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(urlApi + "/discover/movie");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(urlApi + "/discover/movie");
 
         if (genre != null)   builder.queryParam("with_genres", genre);
         if (voteAverage != null)   builder.queryParam("vote_average.lte", voteAverage);
