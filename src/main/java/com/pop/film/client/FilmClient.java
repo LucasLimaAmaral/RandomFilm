@@ -53,12 +53,13 @@ public class FilmClient {
     }
 
 
-    public FilmResponseDTO getRandomFilm(String genre, Float voteAverage, Integer primaryReleaseY){
+    public FilmResponseDTO getRandomFilms(String genre, Float voteAverage, Integer primaryReleaseY, Integer page) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(urlApi + "/discover/movie");
 
         if (genre != null)   builder.queryParam("with_genres", genre);
         if (voteAverage != null)   builder.queryParam("vote_average.lte", voteAverage);
         if (primaryReleaseY != null)  builder.queryParam("primary_release_year", primaryReleaseY);
+        if (page != null)  builder.queryParam("page", page);
 
         String url = builder.toUriString();
 

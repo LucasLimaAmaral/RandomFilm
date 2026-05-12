@@ -28,11 +28,20 @@ public class FilmController {
         return filmService.getPopularList();
     }
 
-    @GetMapping(value = "/search")
-    public List<FilmDTO> getRandomFilm(
+    @GetMapping(value = "/random")
+    public List<FilmDTO> getRandomFilms(
         @RequestParam(required = false) String genre,
         @RequestParam(required = false) Float voteAverage,
         @RequestParam(required = false) Integer primaryReleaseY
+    ){
+        return filmService.getRandomFilms(genre, voteAverage, primaryReleaseY);
+    }
+
+    @GetMapping(value = "/random/film")
+    public FilmDTO getRandomFilm(
+            @RequestParam(required = false) String genre,
+            @RequestParam(required = false) Float voteAverage,
+            @RequestParam(required = false) Integer primaryReleaseY
     ){
         return filmService.getRandomFilm(genre, voteAverage, primaryReleaseY);
     }
