@@ -79,9 +79,10 @@ A API estará disponível em `http://localhost:8080`.
 
 - [x] Busca de filme por nome
 - [x] Listagem de filmes populares
-- [ ] Endpoint de sorteio de filme aleatório
+- [x] Endpoint de sorteio de filme aleatório
+- [x] Endpoint de lista de filmes aleatórios
 - [ ] Frontend web para sorteio interativo
-- [ ] Filtros por gênero, ano e nota
+- [x] Filtros por gênero, ano e nota
 
 ---
 
