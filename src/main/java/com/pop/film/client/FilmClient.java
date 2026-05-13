@@ -1,8 +1,6 @@
 package com.pop.film.client;
 
-import com.pop.film.config.AppConfig;
 import com.pop.film.dto.FilmResponseDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

@@ -3,11 +3,10 @@ package com.pop.film.service;
 import com.pop.film.client.FilmClient;
 import com.pop.film.dto.FilmDTO;
 import com.pop.film.dto.FilmResponseDTO;
-import com.pop.film.util.RandomUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class FilmService {
@@ -32,7 +31,7 @@ public class FilmService {
     public List<FilmDTO> getRandomFilms(String genre, Float voteAverage, Integer primaryReleaseY){
 
 
-        int page = RandomUtils.nextInt(500);
+        int page = ThreadLocalRandom.current().nextInt(500);
 
         FilmResponseDTO films = filmClient.getRandomFilms(genre, voteAverage, primaryReleaseY, page);
 
@@ -42,7 +41,7 @@ public class FilmService {
     public FilmDTO getRandomFilm(String genre, Float voteAverage, Integer primaryReleaseY){
         List<FilmDTO> listFilm = getRandomFilms(genre, voteAverage, primaryReleaseY);
 
-        int position = RandomUtils.nextInt(listFilm.size());
+        int position = ThreadLocalRandom.current().nextInt(listFilm.size());
 
         return listFilm.get(position);
     }
