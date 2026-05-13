@@ -4,7 +4,7 @@ API REST desenvolvida em Java com Spring Boot para consulta de filmes, consumind
 
 ---
 
-## 🚀 Tecnologias
+##  Tecnologias
 
 - **Java 21**
 - **Spring Boot 4.0.6**
@@ -12,9 +12,9 @@ API REST desenvolvida em Java com Spring Boot para consulta de filmes, consumind
 
 ---
 
-## 📋 Endpoints disponíveis
+##  Endpoints disponíveis
 
-### 🔍 Buscar filme por nome
+###  Buscar filme por nome
 
 ```
 GET /movie?query={nome}
@@ -35,13 +35,35 @@ GET /movie?query=Interestellar
 }
 ---
 
-### 🔥 Listar filmes populares
+###  Listar filmes populares
 
 ```
 GET /movie/popular
 ```
 
 Retorna uma lista com os filmes mais populares no momento, de acordo com o TMDB.
+
+---
+
+
+###  Listar filmes aleatorios
+
+```
+GET /movie/random?genre=<number>&voteAverage=<float>&primaryReleaseY=<year>
+```
+
+Retorna uma lista com os filmes aleatorios.
+
+---
+
+
+###  filmes aleatorio
+
+```
+GET /movie/random/film?genre=<number>&voteAverage=<float>&primaryReleaseY=<year>
+```
+
+Retorna um filme aleatorio.
 
 ---
 
@@ -64,6 +86,8 @@ cd randomfilm
 2. Adicione sua chave da API do TMDB no arquivo `application.properties` (ou `application.yml`):
 ```properties
 tmdb.api.key=SUA_CHAVE_AQUI
+tmdb.api.token=BEARER_TOKEN_AQUI
+tmdb.api.url=https://api.themoviedb.org/3
 ```
 
 3. Rode a aplicação:
